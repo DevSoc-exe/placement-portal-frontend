@@ -81,10 +81,6 @@ auth_api.interceptors.response.use(
       toast.error("Oops! Something went wrong");
     }
 
-    if (typeof window !== "undefined") {
-      window.location.href = "/auth/login";
-    }
-
     return Promise.reject(error);
   }
 );

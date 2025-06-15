@@ -17,10 +17,7 @@ type pageProps = {
 };
 
 export default async function Page({ searchParams }: pageProps) {
-  // Allow nested RSCs to access the search params (in a type-safe way)
   searchParamsCache.parse(searchParams);
-
-  // This key is used for invoke suspense if any of the search params changed (used for filters).
   const key = serialize({ ...searchParams });
 
   return (
@@ -35,11 +32,11 @@ export default async function Page({ searchParams }: pageProps) {
         <Separator />
         <ProductTableAction />
         <Suspense
-          key={key}
-          fallback={<DataTableSkeleton columnCount={7} rowCount={10} />}
-        >
-          <DriveListingPage />
-        </Suspense>
+                  key={key}
+                  fallback={<DataTableSkeleton columnCount={7} rowCount={10} />}
+                >
+                  <DriveListingPage />
+                </Suspense>
       </div>
     </PageContainer>
   );

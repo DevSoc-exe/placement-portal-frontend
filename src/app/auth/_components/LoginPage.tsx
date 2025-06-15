@@ -51,7 +51,7 @@ const LoginPage = () => {
           if (response.status === 200) {
             toast.dismiss();
             toast.success("Logged in successfully!");
-            router.replace("/jobs");
+            router.replace("/user/drive");
           }
         } catch (error: any) {
           if (error.response.status == 403) {

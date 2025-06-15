@@ -24,33 +24,13 @@ export default function DriveListingPage({}: DriveListingPage) {
     async function GetDrives() {
       let data;
       try {
-        const base = "/user/drive";
-        let url = base;
-        // if (page > 1) {
-        //   if (url === base) {
-        //     url += "?page=" + page;
-        //   } else {
-        //     url += "&page=" + page;
-        //   }
-        // }
-
-        // if (search) {
-        //   if (url === base) {
-        //     url += "?q=" + search;
-        //   } else {
-        //     url += "&q=" + search;
-        //   }
-        // }
-
-        data = await auth_api.get(url);
+        const baseUrl = "/drives";
+        data = await auth_api.get(baseUrl);
         if (data == undefined) return null;
-        console.log(data.data);
-        // const data = await fakeProducts.getProducts(filters);
         const totalDrives = data.data.total_drives ? data.data.total_drives : 0;
-
         setTotalDrives(totalDrives);
-        const products: Drive[] = data.data.drives ? data.data.drives : [];
-        setDrives(products);
+        const drives: Drive[] = data.data.drives ? data.data.drives : [];
+        setDrives(drives);
       } catch (error) {
         console.log(error);
       }
