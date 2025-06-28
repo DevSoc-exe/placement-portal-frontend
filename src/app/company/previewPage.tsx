@@ -10,6 +10,8 @@ interface CompanyPageProps {
         driveDuration: number;
         requirements: string;
         pointsToNote: string;
+        salary: string;
+        companyOverview: string;
     };
     jobRoles: string[];
     onPublish?: any;
@@ -19,9 +21,11 @@ interface CompanyPageProps {
 
 
 const PreviewPage: React.FC<CompanyPageProps> = ({ formData, jobRoles, onPublish, setPreview }) => {
-
-    const options = { day: 'numeric', month: 'short' };
+    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short' };
+    const from = formData.driveDate;
+    const to = formData.driveDate instanceof Date ? formData.driveDate : formData.driveDate;
     const fromDateString = from.toLocaleDateString('en-GB', options);
+    const toDateString = to.toLocaleDateString('en-GB', options);
 
     const handlePreviewClick = () => {
         console.log(formData);

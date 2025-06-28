@@ -259,10 +259,7 @@ const PostNewDrive = () => {
                                     </p>
                                     <QuillRichTE
                                         id="requirements"
-                                        value={formData.requirements}
-                                        onChange={(value: string) =>
-                                            handleQuillChange("requirements", value)
-                                        }
+                                        onChange={(value: string) => handleQuillChange("requirements", value)}
                                     />
                                 </div>
                                 <div className="w-full flex flex-col gap-1 mt-8">
@@ -274,10 +271,7 @@ const PostNewDrive = () => {
                                     </p>
                                     <QuillRichTE
                                         id="pointsToNote"
-                                        value={formData.pointsToNote}
-                                        onChange={(value: string) =>
-                                            handleQuillChange("pointsToNote", value)
-                                        }
+                                        onChange={(value: string) => handleQuillChange("pointsToNote", value)}
                                     />
                                 </div>
 
@@ -337,7 +331,16 @@ const PostNewDrive = () => {
                     </>
                 ) : (
                     <PreviewPage
-                        formData={formData}
+                        formData={{
+                            companyName: formData.companyName,
+                            jobLocation: formData.jobLocation,
+                            driveDate: formData.driveDate.from,
+                            driveDuration: Math.max(1, Math.ceil((formData.driveDate.to.getTime() - formData.driveDate.from.getTime()) / (1000 * 60 * 60 * 24)) + 1),
+                            requirements: formData.requirements,
+                            pointsToNote: formData.pointsToNote,
+                            salary: formData.salary,
+                            companyOverview: formData.companyOverview,
+                        }}
                         jobRoles={jobRoles}
                         setPreview={setIsPreviewing}
                     />
